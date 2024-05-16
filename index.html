@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Day In My Life Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS */
+    /* Reset CSS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Container styling */
+    .container {
+      width: 80%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Footer styling */
+    .footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    /* Navbar styling */
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-evenly; /* Mengatur agar teks dan navlink berada di ujung kiri dan kanan */
+      align-items: center;
+    }
+
+    .navbar .navbar-brand {
+      font-size: 1.5rem;
+    }
+
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex; /* Mengatur agar navlink berada dalam satu baris */
+    }
+
+    .nav-links li {
+      margin-right: 20px;
+    }
+
+    .nav-links li:last-child {
+      margin-right: 0; /* Menghilangkan margin-right pada elemen terakhir */
+    }
+
+    /* Header styling */
+    .header {
+      background-color: #f0f0f0;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .header-right {
+      flex: 1;
+      text-align: right;
+    }
+
+    /* Carousel styling */
+    .carousel {
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+      width: 5%;
+      color: #000;
+    }
+
+    .carousel-control-prev-icon, .carousel-control-next-icon {
+      height: 100px;
+      width: 100px;
+      outline: black;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      border: 3px solid #000;
+    }
+
+    .carousel-control-prev-icon:before, .carousel-control-next-icon:before {
+      color: black;
+    }
+
+    .carousel-indicators {
+      position: absolute;
+      bottom: -25px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 60%;
+      display: flex;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .carousel-indicators li {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      border: 1px solid black;
+      width: 15px;
+      height: 15px;
+      margin: 0 5px;
+    }
+
+    .carousel-indicators .active {
+      background-color: black;
+    }
+
+    .carousel-inner {
+      overflow: hidden;
+    }
+
+    .carousel-item {
+      transition: transform 0.6s ease;
+    }
+
+    .carousel-item img {
+      max-width: 100%;
+      height: auto;
+      object-fit: cover; /* Mengatur gambar agar memenuhi area carousel */
+      max-height: 500px; /* Menetapkan tinggi maksimum gambar */
+      width: 100%; /* Menetapkan lebar maksimum gambar */
+    }
+
+    /* Cards styling */
+    .cards {
+      margin-top: 20px;
+    }
+
+    .card {
+      margin-bottom: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .card-content {
+      padding: 10px;
+      background-color: #f9f9f9;
+      margin-top: 10px;
+    }
+
+    /* About and Contact styling */
+    .about-contact {
+      border: 2px solid #333;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <span class="navbar-brand">A Day In My Life</span>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <!-- Header bagian kiri -->
+      <div class="header-left">
+        <div class="greeting" id="greeting"></div>
+      </div>
+      <!-- Header bagian kanan -->
+      <div class="header-right">
+        <div class="datetime" id="datetime"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Carousel -->
+  <div class="container" id="home">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="p.jpg" class="d-block w-100" alt="Sunrise at the Beach">
+        </div>
+        <div class="carousel-item">
+          <img src="w.jpeg" class="d-block w-100" alt="Family Picnic in the Park">
+        </div>
+        <div class="carousel-item">
+          <img src="q.jpeg" class="d-block w-100" alt="City Skyline at Night">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- About -->
+  <div class="container" id="about">
+    <div class="about-contact">
+      <h2>About</h2>
+      <p>Namaku Muhammad Rezza Tri Ariyavani, aku suka kulineran (kalo ada uang), dan hobi bermain game.</p>
+      <p>Terkadang karena terlalu stress bermain game, aku pergi untuk menikmati pemandangan alam.</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="container" id="contact">
+    <div class="about-contact">
+      <h2>Contact</h2>
+      <p>Email: rezzaslebew@gacor.com</p>
+      <p>Phone: +62 123456789</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 A Day In My Life. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS and Custom JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // Fungsi untuk mengupdate salam berdasarkan waktu dan menambah nama pemilik setelah salam
+    function updateGreeting(name) {
+      const now = new Date();
+      const hour = now.getHours();
+
+      let greeting;
+
+      if (hour < 12) {
+        greeting = 'Good morning';
+      } else if (hour < 18) {
+        greeting = 'Good afternoon';
+      } else {
+        greeting = 'Good evening';
+      }
+
+      document.getElementById('greeting').innerText = greeting + ', ' + name;
+    }
+
+    // Fungsi untuk mengupdate tanggal dan waktu
+    function updateDateTime() {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      const dateTimeString = now.toLocaleDateString('en-US', options);
+      
+      document.getElementById('datetime').innerText = dateTimeString;
+    }
+
+    // Fungsi untuk mengupdate salam dan tanggal/waktu setiap detik
+    function updateTime() {
+      updateGreeting('Rezza'); // Ganti 'Rezza' dengan nama pemilik Anda
+      updateDateTime();
+      setInterval(updateTime, 1000); // Update setiap detik
+    }
+
+    // Menjalankan fungsi saat halaman dimuat
+    updateTime();
+
+    // Event listener untuk menangani klik pada navlink
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault(); // Menghentikan perilaku default dari anchor tag
+        const target = this.getAttribute('href'); // Mendapatkan nilai atribut href dari anchor yang diklik
+        const offset = document.querySelector(target).offsetTop; // Mendapatkan posisi offset dari elemen target
+        window.scrollTo({
+          top: offset - 70, // Menggeser scroll ke posisi target dengan mengurangi jarak dari bagian atas header
+          behavior: 'smooth' // Efek smooth scroll
+        });
+      });
+    });
+  </script>
+</body>
+</html>
